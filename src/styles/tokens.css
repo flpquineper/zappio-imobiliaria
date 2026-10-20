@@ -1,0 +1,197 @@
+/*
+ * Tokens do design system Zappio — fonte: docs/DESIGN_SYSTEM.md
+ * Componentes só podem usar valores definidos aqui.
+ */
+
+@theme {
+  --color-*: initial;
+
+  /* Paleta oficial (manual da marca, p. 9) */
+  --color-brand-purple: #8026fa;
+  --color-brand-navy: #0a1747;
+  --color-brand-blue: #122696;
+  --color-brand-violet: #6600c2;
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  /* Neutros de interface [derivado do navy] */
+  --color-neutral-50: #f5f3fa;
+  --color-neutral-100: #e9e6f2;
+  --color-neutral-300: #c9c5d8;
+  --color-neutral-500: #6b6880;
+  --color-neutral-700: #4a4760;
+  --color-neutral-900: #2a2840;
+
+  /* Semânticas [derivado] */
+  --color-success: #127a4b;
+  --color-error: #c2183b;
+  --color-warning: #a35a00;
+  --color-whatsapp: #25d366;
+
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /*
+   * Articulat CF não tem licença web. Inter Tight é a alternativa livre (OFL) mais próxima
+   * em largura e desenho; carregada via next/font em --font-inter-tight.
+   */
+  --font-sans: var(--font-inter-tight), system-ui, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --shadow-sm: 0 1px 2px rgb(10 23 71 / 0.06), 0 1px 3px rgb(10 23 71 / 0.08);
+  --shadow-md: 0 4px 12px rgb(10 23 71 / 0.08), 0 2px 4px rgb(10 23 71 / 0.06);
+  --shadow-lg: 0 16px 40px rgb(10 23 71 / 0.12);
+  --shadow-brand: 0 12px 32px rgb(128 38 250 / 0.28);
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+
+  --container-site: 1280px;
+
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Gradientes (manual, p. 10) */
+@utility bg-gradient-brand {
+  background-image: linear-gradient(135deg, #6600c2 0%, #8026fa 35%, #122696 75%, #0a1747 100%);
+}
+
+@utility bg-gradient-glow {
+  background-color: #0a1747;
+  background-image: radial-gradient(ellipse at 70% 110%, #8026fa 0%, #6600c2 22%, transparent 65%),
+    radial-gradient(ellipse at 0% 0%, #122696 0%, transparent 55%);
+}
+
+@utility bg-gradient-overlay {
+  background-image: linear-gradient(180deg, rgb(10 23 71 / 0) 35%, rgb(10 23 71 / 0.88) 100%);
+}
+
+@utility bg-gradient-overlay-side {
+  background-image: linear-gradient(90deg, rgb(10 23 71 / 0.85) 0%, rgb(10 23 71 / 0.45) 50%, rgb(10 23 71 / 0) 80%);
+}
+
+/* Pattern da marca — sempre em baixa opacidade sobre fundo escuro */
+@utility bg-pattern {
+  background-image: url('/brand/pattern.svg');
+  background-size: 240px auto;
+}
+
+/* Escala tipográfica (mobile-first; desktop a partir de lg) */
+@utility text-display {
+  font-size: 2.5rem;
+  line-height: 1.05;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  @media (width >= 64rem) {
+    font-size: 4rem;
+  }
+}
+
+@utility text-h1 {
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  @media (width >= 64rem) {
+    font-size: 3rem;
+  }
+}
+
+@utility text-h2 {
+  font-size: 1.75rem;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  @media (width >= 64rem) {
+    font-size: 2.25rem;
+  }
+}
+
+@utility text-h3 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+  font-weight: 600;
+  @media (width >= 64rem) {
+    font-size: 1.5rem;
+  }
+}
+
+@utility text-h4 {
+  font-size: 1.125rem;
+  line-height: 1.3;
+  font-weight: 600;
+  @media (width >= 64rem) {
+    font-size: 1.25rem;
+  }
+}
+
+@utility text-body-lg {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  @media (width >= 64rem) {
+    font-size: 1.125rem;
+  }
+}
+
+@utility text-body {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@utility text-body-sm {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@utility text-caption {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+@utility text-price {
+  font-size: 1.5rem;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  @media (width >= 64rem) {
+    font-size: 1.75rem;
+  }
+}
+
+@utility text-button {
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* Container padrão do site: max 1280px, gutter 16/24/32px */
+@utility container-site {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 48rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Espaçamento vertical entre seções: 64px mobile / 96px desktop */
+@utility section-y {
+  padding-block: 4rem;
+  @media (width >= 64rem) {
+    padding-block: 6rem;
+  }
+}

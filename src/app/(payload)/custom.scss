@@ -1,0 +1,566 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap');
+
+// Identidade Zappio no painel administrativo (Payload).
+// Cores e fonte seguem docs/DESIGN_SYSTEM.md; os estilos do Payload ficam em @layer, então estes têm prioridade.
+
+:root {
+  --zp-purple: #8026fa;
+  --zp-violet: #6600c2;
+  --zp-navy: #0a1747;
+  --zp-blue: #122696;
+  --zp-n50: #f5f3fa;
+  --zp-n100: #e9e6f2;
+  --zp-n300: #c9c5d8;
+  --zp-n500: #6b6880;
+  --zp-n700: #4a4760;
+  --zp-success: #127a4b;
+  --zp-warning: #a35a00;
+  --zp-radius: 10px;
+  --font-body: 'Inter Tight', system-ui, sans-serif;
+}
+
+html[data-theme='light'] {
+  --theme-bg: #fff;
+  --theme-text: var(--zp-navy);
+}
+
+// Botões principais na cor da marca
+.btn--style-primary {
+  --bg-color: var(--zp-purple);
+  --hover-bg: var(--zp-violet);
+  --color: #fff;
+  --hover-color: #fff;
+}
+
+.btn--style-secondary {
+  --color: var(--zp-purple);
+  --hover-color: var(--zp-violet);
+  --box-shadow: inset 0 0 0 1px var(--zp-purple);
+}
+
+// Abas e títulos de seção mais visíveis
+.tabs-field__tab-button {
+  font-weight: 600;
+}
+
+.tabs-field__tab-button--active {
+  color: var(--zp-purple);
+  box-shadow: inset 0 -2px 0 var(--zp-purple);
+}
+
+.tabs-field__description,
+.field-description {
+  color: var(--zp-n500);
+}
+
+// ---------- Menu lateral ----------
+.zappio-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__title {
+    margin: 0 0 6px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--zp-n500);
+  }
+
+  &__link {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: var(--zp-navy);
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 1.25;
+
+    svg {
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--zp-n500);
+    }
+
+    small {
+      display: block;
+      margin-top: 2px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--zp-n500);
+    }
+
+    &:hover {
+      background: var(--zp-n50);
+    }
+
+    &.is-active {
+      background: rgb(128 38 250 / 0.1);
+      color: var(--zp-purple);
+
+      svg {
+        color: var(--zp-purple);
+      }
+    }
+  }
+
+  &__site {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 10px 0;
+    color: var(--zp-purple);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ---------- Botões e links utilitários ----------
+.zappio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background-color 0.15s;
+
+  &--primary {
+    background: var(--zp-purple);
+    color: #fff;
+
+    &:hover {
+      background: var(--zp-violet);
+    }
+  }
+
+  &--ghost {
+    color: var(--zp-navy);
+    box-shadow: inset 0 0 0 1px var(--zp-n100);
+
+    &:hover {
+      background: var(--zp-n50);
+    }
+  }
+
+  &--light {
+    background: #fff;
+    color: var(--zp-navy);
+
+    &:hover {
+      background: var(--zp-n50);
+    }
+  }
+}
+
+.zappio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--zp-purple);
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.zappio-muted {
+  color: var(--zp-n500);
+}
+
+// ---------- Painel inicial ----------
+.zappio-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 24px 0 64px;
+  max-width: 1120px;
+}
+
+.zappio-hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 16px;
+  color: #fff;
+  background-color: var(--zp-navy);
+  background-image: radial-gradient(ellipse at 85% 120%, var(--zp-purple) 0%, var(--zp-violet) 25%, transparent 65%),
+    radial-gradient(ellipse at 0% 0%, var(--zp-blue) 0%, transparent 55%);
+
+  h1 {
+    margin: 4px 0 10px;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.15;
+    color: #fff;
+  }
+
+  p {
+    max-width: 620px;
+    margin: 0;
+    color: var(--zp-n100);
+    line-height: 1.5;
+  }
+}
+
+.zappio-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--zp-n300) !important;
+}
+
+.zappio-section-title {
+  margin: 0 0 14px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.zappio-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.zappio-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.zappio-action {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px var(--zp-n100);
+  color: var(--zp-navy);
+  text-decoration: none;
+  transition: box-shadow 0.15s, transform 0.15s;
+
+  &:hover {
+    box-shadow: inset 0 0 0 1px var(--zp-purple), 0 8px 24px rgb(10 23 71 / 0.08);
+    transform: translateY(-1px);
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgb(128 38 250 / 0.1);
+    color: var(--zp-purple);
+  }
+
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 13px;
+    color: var(--zp-n500);
+
+    strong {
+      font-size: 15px;
+      color: var(--zp-navy);
+    }
+  }
+
+  &__arrow {
+    color: var(--zp-n300);
+  }
+
+  &.is-primary {
+    background: var(--zp-purple);
+    box-shadow: none;
+
+    .zappio-action__icon {
+      background: rgb(255 255 255 / 0.18);
+      color: #fff;
+    }
+
+    .zappio-action__body,
+    .zappio-action__body strong,
+    .zappio-action__arrow {
+      color: #fff;
+    }
+
+    &:hover {
+      background: var(--zp-violet);
+    }
+  }
+}
+
+.zappio-pages {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+}
+
+.zappio-page-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px var(--zp-n100);
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--zp-purple);
+
+    h3 {
+      margin: 0;
+      font-size: 17px;
+      color: var(--zp-navy);
+    }
+  }
+
+  ul {
+    flex: 1;
+    margin: 0;
+    padding-left: 18px;
+    color: var(--zp-n700);
+    line-height: 1.7;
+  }
+
+  footer {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+.zappio-contacts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px var(--zp-n100);
+
+  li + li {
+    border-top: 1px solid var(--zp-n100);
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    color: var(--zp-navy);
+    text-decoration: none;
+
+    &:hover {
+      background: var(--zp-n50);
+    }
+  }
+
+  &__date {
+    margin-left: auto;
+    font-size: 13px;
+  }
+}
+
+.zappio-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--zp-n300);
+
+  &.is-new {
+    background: var(--zp-purple);
+  }
+}
+
+.zappio-empty {
+  padding: 24px;
+  border-radius: 12px;
+  background: var(--zp-n50);
+  color: var(--zp-n700);
+}
+
+// ---------- Lista de imóveis ----------
+.zappio-thumb {
+  display: block;
+  width: 72px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--zp-n100);
+
+  &--empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--zp-n500);
+  }
+}
+
+.zappio-price {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.zappio-status {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &--published {
+    background: rgb(18 122 75 / 0.12);
+    color: var(--zp-success);
+  }
+
+  &--sold {
+    background: var(--zp-navy);
+    color: #fff;
+  }
+
+  &--draft {
+    background: rgb(163 90 0 / 0.12);
+    color: var(--zp-warning);
+  }
+
+  &--inactive {
+    background: var(--zp-n100);
+    color: var(--zp-n700);
+  }
+}
+
+// ---------- Banners (rótulo das linhas) ----------
+.zappio-row-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+
+  &__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: rgb(128 38 250 / 0.1);
+    color: var(--zp-purple);
+    font-size: 12px;
+  }
+}
+
+// ---------- Prévia da mensagem do WhatsApp / ações de contato ----------
+.zappio-wa-preview,
+.zappio-contact-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--zp-n50);
+
+  &__label {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--zp-n700);
+  }
+
+  &__bubble {
+    max-width: 520px;
+    padding: 10px 14px;
+    border-radius: 10px 10px 10px 2px;
+    background: #dcf8c6;
+    color: #111b21;
+    line-height: 1.45;
+    white-space: pre-wrap;
+    box-shadow: 0 1px 1px rgb(0 0 0 / 0.08);
+  }
+}
+
+.zappio-contact-actions .zappio-btn {
+  width: 100%;
+}
+
+// Abas quebram linha em vez de rolar quando a prévia ao vivo divide a tela
+.tabs-field__tabs {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+
+// Destaques da home: um imóvel por linha, com o título inteiro e alça para arrastar
+#field-featuredProperties .rs__value-container--is-multi {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+}
+
+#field-featuredProperties .rs__multi-value {
+  max-width: none;
+  cursor: grab;
+}
+
+#field-featuredProperties .rs__multi-value__label {
+  white-space: normal;
+}
+
+#field-featuredProperties .rs__multi-value__label * {
+  max-width: none;
+  overflow: visible;
+  white-space: normal;
+  text-overflow: clip;
+}
+
+// "Criar novo" em destaque nas listas
+.list-create-new-doc__create-new-button.btn--style-pill {
+  --bg-color: var(--zp-purple);
+  --hover-bg: var(--zp-violet);
+  --color: #fff;
+  --hover-color: #fff;
+  padding-inline: 14px;
+  font-weight: 600;
+}
+
+.zappio-status--new {
+  background: rgb(128 38 250 / 0.12);
+  color: var(--zp-purple);
+}
