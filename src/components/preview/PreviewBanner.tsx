@@ -9,6 +9,8 @@ export function PreviewBanner() {
           <Eye className="size-4" aria-hidden />
           Modo de pré-visualização: você também está vendo itens em rascunho.
         </p>
+        {/* Rota de API que limpa o cookie de prévia: precisa de navegação completa, não do <Link>. */}
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/preview/sair" className="font-semibold underline underline-offset-2">
           Sair
         </a>
