@@ -19,7 +19,7 @@ export async function Header() {
     <HeaderShell>
       <div className="container-site flex h-18 items-center justify-between gap-6">
         <Link href="/" aria-label="Zappio — página inicial" className="flex h-11 shrink-0 items-center">
-          <Logo version="secondary" tone="04" width={128} priority />
+          <Logo version="secondary" tone="04" width={128} />
         </Link>
 
         <nav aria-label="Principal" className="hidden lg:block">

@@ -63,7 +63,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
               className="relative min-w-0 shrink-0 grow-0 basis-full"
             >
               <div className="relative aspect-4/5 max-h-[calc(100dvh-72px)] w-full sm:aspect-auto sm:h-[min(80vh,720px)] sm:min-h-[520px]">
-                <SlideImage slide={slide} priority={i === 0} />
+                <SlideImage slide={slide} first={i === 0} />
                 <div aria-hidden className="absolute inset-0 bg-gradient-overlay sm:bg-gradient-overlay-side" />
                 <BrandTriangle className="absolute right-0 bottom-0 h-[38%] w-[48%] text-brand-purple/85 mix-blend-multiply sm:h-[70%] sm:w-[34%]" />
 
@@ -148,14 +148,22 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
 }
 
 /** Direção de arte: imagem paisagem no desktop e retrato no celular (padrão getImageProps do Next). */
-function SlideImage({ slide, priority }: { slide: HeroSlide; priority: boolean }) {
+function SlideImage({ slide, first }: { slide: HeroSlide; first: boolean }) {
+  // Com <picture>, preload só pré-carregaria uma das versões: o primeiro banner usa fetchPriority alta.
   const common = { alt: slide.desktop.alt, sizes: '100vw', quality: 85 }
   const {
     props: { srcSet: desktopSrcSet },
   } = getImageProps({ ...common, src: slide.desktop.src, width: 1920, height: 800 })
   const {
     props: { srcSet: mobileSrcSet, ...rest },
-  } = getImageProps({ ...common, src: slide.mobile.src, width: 1080, height: 1350, priority })
+  } = getImageProps({
+    ...common,
+    src: slide.mobile.src,
+    width: 1080,
+    height: 1350,
+    loading: first ? 'eager' : 'lazy',
+    fetchPriority: first ? 'high' : 'auto',
+  })
 
   return (
     <picture>

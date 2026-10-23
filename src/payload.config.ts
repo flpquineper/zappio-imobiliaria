@@ -21,9 +21,15 @@ import { Settings } from './globals/Settings'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 const isLocalDb = /@(localhost|127\.0\.0\.1)[:/]/.test(process.env.DATABASE_URL ?? '')
+// Proteção CSRF do Payload: o painel só aceita requisições logadas vindas destes endereços (além do serverURL).
+// Sem os endereços da Vercel, salvar e sair do painel falham no .vercel.app e nos previews.
+const vercelOrigins = [process.env.VERCEL_PROJECT_PRODUCTION_URL, process.env.VERCEL_BRANCH_URL, process.env.VERCEL_URL]
+  .filter((host): host is string => Boolean(host))
+  .map((host) => `https://${host}`)
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SITE_URL,
+  csrf: vercelOrigins,
   admin: {
     user: Users.slug,
     theme: 'light',
@@ -43,6 +49,7 @@ export default buildConfig({
       beforeNavLinks: ['/components/admin/AdminNav#AdminNav'],
       views: {
         dashboard: { Component: '/components/admin/Dashboard#Dashboard' },
+        help: { Component: '/components/admin/HelpView#HelpView', path: '/ajuda', meta: { title: 'Central de ajuda' } },
       },
     },
     // Prévia ao vivo: o site abre ao lado do formulário e recarrega a cada "Salvar".

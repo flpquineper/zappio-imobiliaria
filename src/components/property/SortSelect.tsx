@@ -12,7 +12,7 @@ export function SortSelect({ value }: { value: SortKey }) {
 
   return (
     <div className="flex items-center gap-2">
-      <label htmlFor="ordem" className="hidden text-body-sm text-neutral-500 sm:block">
+      <label htmlFor="ordem" className="sr-only text-body-sm text-neutral-500 sm:not-sr-only">
         Ordenar por
       </label>
       <Select

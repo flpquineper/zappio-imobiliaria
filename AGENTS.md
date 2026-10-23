@@ -12,6 +12,7 @@ Documentos de referência (leitura obrigatória antes de tarefas relacionadas):
 |---|---|
 | `docs/PLANO_DE_DESENVOLVIMENTO.md` | Escopo, fases, modelo de dados, critérios de aceite |
 | `docs/DESIGN_SYSTEM.md` | **Qualquer** trabalho de UI: cores, tipografia, formas, componentes, tom de voz |
+| `docs/TESTES.md` | Testes e2e (Playwright), de carga (k6) e Lighthouse |
 | `Identidade Visual - Zappio/Manual da Marca/` | Dúvida que o design system não responda — o manual prevalece |
 
 ## Stack
@@ -88,6 +89,7 @@ O painel é usado por pessoas **não técnicas**. Princípios (ver `docs/GUIA_DO
 
 - **Organizado por página do site**, não por estrutura de dados. Menu próprio em `src/components/admin/AdminNav.tsx` (todas as coleções/globals usam `admin.group: false`); ao criar coleção/global nova, adicione o link lá e em `src/components/admin/routes.ts`.
 - Painel inicial customizado (`src/components/admin/Dashboard.tsx`) com atalhos de tarefas e resumo das páginas.
+- **Central de ajuda** em `/admin/ajuda` (`src/components/admin/HelpView.tsx`), com o conteúdo em `src/components/admin/help/topics.tsx`. Mudou algo que o usuário vê no painel (campo, aba, regra, fluxo)? Atualize o tópico correspondente no mesmo PR.
 - Abas numeradas na **mesma ordem da página** pública; `description` em toda aba/campo não óbvio dizendo *onde aparece* no site.
 - **Prévia ao vivo** (`admin.livePreview`) em imóveis e nas páginas; passa por `/preview` (draft mode, exige login) e recarrega a cada "Salvar" (`LivePreviewListener`).
 - Nada técnico na tela: `hideAPIURL: true`, sem pedir slug/URL/IDs, valores aceitos em formato livre e normalizados no servidor (ex.: telefone).
@@ -132,6 +134,10 @@ pnpm build        # build de produção
 pnpm lint         # ESLint
 pnpm typecheck    # tsc --noEmit
 pnpm test         # testes unitários (Vitest, arquivos *.test.ts)
+pnpm test:e2e     # ponta a ponta (Playwright, e2e/): desktop 1440px + celular 360px
+pnpm test:e2e:prod   # e2e só de leitura contra produção
+pnpm perf:smoke   # k6: 1 usuário, 30 s (BASE_URL=... para outro ambiente)
+pnpm perf:load    # k6: carga simulada; não rode em produção sem combinar (ver docs/TESTES.md)
 pnpm format       # Prettier
 pnpm generate:types      # regenera src/payload-types.ts após mudar o schema
 pnpm generate:importmap  # após adicionar componentes customizados no admin
@@ -157,6 +163,7 @@ Gotchas:
 ## Definição de pronto (checklist do PR)
 
 - [ ] `pnpm lint`, `pnpm typecheck` e `pnpm build` passam
+- [ ] `pnpm test:e2e` passa (obrigatório quando muda tela, painel ou rotas)
 - [ ] Usa apenas tokens do design system; nenhum valor solto de cor/fonte/sombra
 - [ ] Responsivo testado em 360px, 768px e 1440px
 - [ ] Acessível por teclado, foco visível, contraste AA

@@ -54,7 +54,7 @@ export function Gallery({ images, title }: { images: GalleryImage[]; title: stri
           {images.map((img, i) => (
             <li key={img.src} className="relative aspect-4/3 w-full shrink-0 snap-center">
               <button type="button" onClick={() => setIndex(i)} className="absolute inset-0" aria-label={`Ampliar foto ${i + 1}`}>
-                <Image src={img.src} alt={img.alt} fill priority={i === 0} sizes="100vw" className="object-cover" />
+                <Image src={img.src} alt={img.alt} fill preload={i === 0} fetchPriority={i === 0 ? 'high' : undefined} sizes="100vw" className="object-cover" />
               </button>
             </li>
           ))}
@@ -73,7 +73,7 @@ export function Gallery({ images, title }: { images: GalleryImage[]; title: stri
             className={cn('group relative overflow-hidden', side.length ? 'col-span-2 row-span-2' : 'col-span-4 row-span-2')}
             aria-label="Ampliar foto 1"
           >
-            <Image src={first.src} alt={first.alt} fill priority sizes="50vw" className="object-cover transition-transform duration-500 ease-brand group-hover:scale-[1.02]" />
+            <Image src={first.src} alt={first.alt} fill loading="eager" sizes="50vw" className="object-cover transition-transform duration-500 ease-brand group-hover:scale-[1.02]" />
           </button>
           {side.map((img, i) => (
             <button

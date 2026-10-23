@@ -7,6 +7,7 @@ import {
   FileText,
   Home,
   Images,
+  LifeBuoy,
   LayoutDashboard,
   ListChecks,
   MapPin,
@@ -56,6 +57,10 @@ const SECTIONS: Section[] = [
       { href: ADMIN.features, label: 'Características', icon: ListChecks },
       { href: ADMIN.media, label: 'Biblioteca de imagens', icon: Images },
     ],
+  },
+  {
+    title: 'Ajuda',
+    items: [{ href: ADMIN.help, label: 'Central de ajuda', icon: LifeBuoy, hint: 'Passo a passo de cada tarefa' }],
   },
 ]
 

@@ -69,7 +69,7 @@ export default async function AboutPage() {
           </div>
           {imageUrl && (
             <div className="relative aspect-4/3 overflow-hidden rounded-xl">
-              <Image src={imageUrl} alt={image?.alt ?? ''} fill priority sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+              <Image src={imageUrl} alt={image?.alt ?? ''} fill preload fetchPriority="high" sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
               <BrandTriangle className="absolute right-0 bottom-0 h-2/5 w-1/2 text-brand-purple/85 mix-blend-multiply" />
             </div>
           )}

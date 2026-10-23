@@ -4,6 +4,7 @@ import {
   ExternalLink,
   FileText,
   Home,
+  LifeBuoy,
   MessageSquare,
   Plus,
   Settings,
@@ -125,6 +126,7 @@ export async function Dashboard({ payload, user }: Props) {
           {isAdmin && (
             <QuickAction href={ADMIN.settings} icon={Settings} title="Alterar WhatsApp e contato" text="Número, mensagem, endereço e redes" />
           )}
+          <QuickAction href={ADMIN.help} icon={LifeBuoy} title="Central de ajuda" text="Passo a passo de cada tarefa do painel" />
         </div>
       </section>
 
