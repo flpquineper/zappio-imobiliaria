@@ -20,6 +20,7 @@ import { Settings } from './globals/Settings'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+const isLocalDb = /@(localhost|127\.0\.0\.1)[:/]/.test(process.env.DATABASE_URL ?? '')
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SITE_URL,
@@ -77,6 +78,8 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },
+    // Ajuste automático do schema só no banco local; fora dele (Neon) o schema muda apenas por migration.
+    push: isLocalDb,
   }),
   sharp,
   // Limite por arquivo (fotos de câmera raramente passam disso).
@@ -85,6 +88,8 @@ export default buildConfig({
     // Fotos no Cloudflare R2 (API compatível com S3). Sem as variáveis R2_*, usa a pasta local media/ (desenvolvimento).
     s3Storage({
       enabled: Boolean(process.env.R2_BUCKET),
+      // Mantém o campo _objectKey mesmo sem R2, para o schema local e o de produção gerarem as mesmas migrations.
+      alwaysInsertFields: true,
       collections: { media: true },
       bucket: process.env.R2_BUCKET ?? '',
       // Upload direto do navegador para o R2: evita o limite de ~4,5 MB por requisição da Vercel.

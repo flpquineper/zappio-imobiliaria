@@ -252,6 +252,8 @@ export interface Media {
    * Descreva a imagem para quem usa leitor de tela e para o Google. Ex.: "Sala de estar com sofá cinza e janelas amplas".
    */
   alt: string;
+  prefix?: string | null;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -559,6 +561,8 @@ export interface FeaturesSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  prefix?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
