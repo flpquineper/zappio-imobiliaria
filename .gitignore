@@ -54,3 +54,5 @@ node_modules/
 
 # fontes sem licença web
 *.otf
+.env*
+!.env.example
