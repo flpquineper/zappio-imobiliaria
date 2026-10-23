@@ -10,6 +10,7 @@ import { AdminIcon as AdminIcon_91a09b539d3c86b0aebf520e7564ce08 } from '../../.
 import { AdminLogo as AdminLogo_91a09b539d3c86b0aebf520e7564ce08 } from '../../../components/admin/Logo'
 import { AdminNav as AdminNav_231477f0faa4368be46fd47ffb9da4d9 } from '../../../components/admin/AdminNav'
 import { Dashboard as Dashboard_16b88e9b8c48e393fa86591406efd08f } from '../../../components/admin/Dashboard'
+import { HelpView as HelpView_dbf90f8b24efd36613f19005a2cfcf9d } from '../../../components/admin/HelpView'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
 
@@ -27,6 +28,7 @@ export const importMap = {
   "/components/admin/Logo#AdminLogo": AdminLogo_91a09b539d3c86b0aebf520e7564ce08,
   "/components/admin/AdminNav#AdminNav": AdminNav_231477f0faa4368be46fd47ffb9da4d9,
   "/components/admin/Dashboard#Dashboard": Dashboard_16b88e9b8c48e393fa86591406efd08f,
+  "/components/admin/HelpView#HelpView": HelpView_dbf90f8b24efd36613f19005a2cfcf9d,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1,
   "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24
 }

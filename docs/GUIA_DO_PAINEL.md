@@ -1,5 +1,7 @@
 # Guia do painel da Zappio
 
+> **A versão completa e sempre atualizada fica dentro do próprio painel, em Central de ajuda (`/admin/ajuda`)**, com busca e atalhos para cada tela. Este arquivo é um resumo para leitura fora do painel.
+>
 > Versão ilustrada, com prints das telas: [`Guia-do-Painel-Zappio.pdf`](Guia-do-Painel-Zappio.pdf).
 
 Este guia é para quem vai cuidar do site no dia a dia. Não precisa saber nada de tecnologia.

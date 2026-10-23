@@ -88,6 +88,7 @@ O painel é usado por pessoas **não técnicas**. Princípios (ver `docs/GUIA_DO
 
 - **Organizado por página do site**, não por estrutura de dados. Menu próprio em `src/components/admin/AdminNav.tsx` (todas as coleções/globals usam `admin.group: false`); ao criar coleção/global nova, adicione o link lá e em `src/components/admin/routes.ts`.
 - Painel inicial customizado (`src/components/admin/Dashboard.tsx`) com atalhos de tarefas e resumo das páginas.
+- **Central de ajuda** em `/admin/ajuda` (`src/components/admin/HelpView.tsx`), com o conteúdo em `src/components/admin/help/topics.tsx`. Mudou algo que o usuário vê no painel (campo, aba, regra, fluxo)? Atualize o tópico correspondente no mesmo PR.
 - Abas numeradas na **mesma ordem da página** pública; `description` em toda aba/campo não óbvio dizendo *onde aparece* no site.
 - **Prévia ao vivo** (`admin.livePreview`) em imóveis e nas páginas; passa por `/preview` (draft mode, exige login) e recarrega a cada "Salvar" (`LivePreviewListener`).
 - Nada técnico na tela: `hideAPIURL: true`, sem pedir slug/URL/IDs, valores aceitos em formato livre e normalizados no servidor (ex.: telefone).

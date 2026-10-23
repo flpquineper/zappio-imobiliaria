@@ -1,6 +1,8 @@
 /** Mapa único das telas do painel, usado no menu e no painel inicial. */
 export const ADMIN = {
   home: '/admin',
+  help: '/admin/ajuda',
+  account: '/admin/account',
   homePage: '/admin/globals/home-content',
   aboutPage: '/admin/globals/about-content',
   settings: '/admin/globals/settings',

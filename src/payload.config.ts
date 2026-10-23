@@ -49,6 +49,7 @@ export default buildConfig({
       beforeNavLinks: ['/components/admin/AdminNav#AdminNav'],
       views: {
         dashboard: { Component: '/components/admin/Dashboard#Dashboard' },
+        help: { Component: '/components/admin/HelpView#HelpView', path: '/ajuda', meta: { title: 'Central de ajuda' } },
       },
     },
     // Prévia ao vivo: o site abre ao lado do formulário e recarrega a cada "Salvar".
