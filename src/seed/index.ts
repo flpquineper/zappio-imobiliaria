@@ -33,12 +33,25 @@ if (!isLocalDb && !process.env.SEED_ADMIN_PASSWORD) {
   console.error('Defina SEED_ADMIN_PASSWORD (senha forte) para criar o admin fora do ambiente local.')
   process.exit(1)
 }
+// Sem R2, as fotos iriam para a pasta media/ desta máquina e o site publicado não as encontraria.
+if (!isLocalDb && !process.env.R2_BUCKET) {
+  console.error('Defina as variáveis R2_* para enviar as fotos ao Cloudflare R2 fora do ambiente local.')
+  process.exit(1)
+}
+// `vercel env pull` grava "[SENSITIVE]" no lugar do valor de variáveis sensíveis.
+const placeholders = Object.keys(process.env).filter((key) => process.env[key] === '[SENSITIVE]')
+if (placeholders.length > 0) {
+  console.error(`Variáveis sem valor real ("[SENSITIVE]"): ${placeholders.join(', ')}. Defina os valores antes de rodar o seed.`)
+  process.exit(1)
+}
 
 const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL ?? 'admin@zappio.com.br'
 const ADMIN_PASSWORD = process.env.SEED_ADMIN_PASSWORD ?? 'zappio-dev-123'
 
 const payload = await getPayload({ config })
-const context = { disableRevalidate: true }
+// Um objeto novo por chamada: o plugin de storage guarda o arquivo da operação em req.context,
+// e um context compartilhado fazia só a primeira foto ir para o R2.
+const context = () => ({ disableRevalidate: true })
 
 const wipe: CollectionSlug[] = [
   'contact-messages',
@@ -48,8 +61,13 @@ const wipe: CollectionSlug[] = [
   'property-types',
   'media',
 ]
+// A foto de computador do banner é obrigatória: o banco recusa apagar uma foto ainda usada em um banner.
+const home = await payload.findGlobal({ slug: 'home-content', depth: 0 })
+if (home.banners?.length) {
+  await payload.updateGlobal({ slug: 'home-content', data: { banners: [] }, depth: 0, context: context() })
+}
 for (const collection of wipe) {
-  await payload.delete({ collection, where: { id: { exists: true } }, context })
+  await payload.delete({ collection, where: { id: { exists: true } }, context: context() })
 }
 payload.logger.info('Conteúdo anterior removido')
 
@@ -68,7 +86,7 @@ for (const [file, alt] of Object.entries(IMAGES)) {
     collection: 'media',
     data: { alt },
     filePath: path.resolve(dirname, 'images', `${file}.jpg`),
-    context,
+    context: context(),
   })
   media[file] = doc.id
 }
@@ -76,19 +94,19 @@ payload.logger.info(`${Object.keys(media).length} imagens enviadas`)
 
 const types: Record<string, number> = {}
 for (const t of PROPERTY_TYPES) {
-  types[t.name] = (await payload.create({ collection: 'property-types', data: t, context })).id
+  types[t.name] = (await payload.create({ collection: 'property-types', data: t, context: context() })).id
 }
 
 const neighborhoods: Record<string, number> = {}
 for (const name of NEIGHBORHOODS) {
   neighborhoods[name] = (
-    await payload.create({ collection: 'neighborhoods', data: { name, city: 'Pelotas' }, context })
+    await payload.create({ collection: 'neighborhoods', data: { name, city: 'Pelotas' }, context: context() })
   ).id
 }
 
 const features: Record<string, number> = {}
 for (const name of FEATURES) {
-  features[name] = (await payload.create({ collection: 'features', data: { name }, context })).id
+  features[name] = (await payload.create({ collection: 'features', data: { name }, context: context() })).id
 }
 
 const featuredByOrder: { order: number; id: number }[] = []
@@ -111,7 +129,7 @@ for (const [i, p] of [...PROPERTIES].reverse().entries()) {
       features: featureNames.map((f) => features[f]),
       createdAt: new Date(Date.now() - (PROPERTIES.length - i) * 86_400_000 * 3).toISOString(),
     },
-    context,
+    context: context(),
   })
   if (featured !== undefined) featuredByOrder.push({ order: featured, id: created.id })
 }
@@ -120,7 +138,7 @@ payload.logger.info(`${PROPERTIES.length} imóveis criados`)
 await payload.updateGlobal({
   slug: 'settings',
   data: { ...SETTINGS, ogImage: media['casa-contemporanea-1'] },
-  context,
+  context: context(),
 })
 await payload.updateGlobal({
   slug: 'home-content',
@@ -135,12 +153,12 @@ await payload.updateGlobal({
       active: true,
     })),
   },
-  context,
+  context: context(),
 })
 await payload.updateGlobal({
   slug: 'about-content',
   data: { ...ABOUT_CONTENT, image: media[ABOUT_CONTENT.image] },
-  context,
+  context: context(),
 })
 
 payload.logger.info('Seed concluído ✔')

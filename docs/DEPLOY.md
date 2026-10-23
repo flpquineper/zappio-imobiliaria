@@ -74,7 +74,7 @@ SEED_ADMIN_PASSWORD="uma-senha-forte" \
 pnpm seed
 ```
 
-O seed envia as 28 fotos para o R2. Rode **uma vez só**: ele apaga o conteúdo existente e por isso é bloqueado fora do banco local sem `SEED_ALLOW_REMOTE=true`.
+O seed envia as 28 fotos para o R2 (confira no bucket: 196 arquivos, 7 tamanhos por foto). Rode **uma vez só**: ele apaga o conteúdo existente e por isso é bloqueado fora do banco local sem `SEED_ALLOW_REMOTE=true`.
 
 ## 4. Vercel
 
@@ -129,4 +129,7 @@ feature branch ──► Pull Request ──► Preview na Vercel (URL própria)
 | Upload de foto falha no painel | Domínio fora do CORS do R2, ou credenciais R2 erradas na Vercel |
 | Links de WhatsApp/compartilhamento apontam para `localhost` ou `vercel.app` | `NEXT_PUBLIC_SITE_URL` desatualizado (precisa de redeploy depois de mudar) |
 | Build falha com erro de tabela/coluna | Migration não gerada para a mudança de schema |
+| Build trava em "It looks like you've run Payload in dev mode" e falha após ~5 min | Linha `batch = -1` em `payload_migrations` (schema alterado por *push* fora de migration). No SQL Editor do Neon: `DELETE FROM payload_migrations WHERE batch = -1;` e redeploy |
+| `vercel env pull` traz valores `[SENSITIVE]` | Variáveis sensíveis não podem ser baixadas. Use os valores guardados no gerenciador de senhas (o seed recusa rodar com `[SENSITIVE]`) |
+| Seed falha com `AccessDenied` ao enviar fotos | Token do R2 criado como *Object Read only*. Recrie como **Object Read & Write** |
 | Primeira visita lenta depois de um tempo parado | Neon Free suspende o banco após 5 min ocioso (~1 s para acordar); páginas em cache não são afetadas |
