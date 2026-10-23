@@ -267,7 +267,7 @@ Altura ~80vh desktop / 4:5 mobile. Imagem + `gradient-overlay` + triângulo de c
 
 ### Outros
 
-`SearchBar` (busca rápida da home), `FilterPanel` (drawer no mobile), `Gallery` (lightbox com swipe), `StatBlock` (número grande `display` + legenda), `SectionHeading` (eyebrow `caption` roxo + `h2`), `WhatsAppFab` (botão flutuante), `EmptyState` (pattern + mensagem), `Skeleton`.
+`SearchBar` (busca rápida da home), `FilterPanel` (drawer no mobile), `Gallery` (lightbox com swipe), `StatBlock` (número grande `display` + legenda), `SectionHeading` (eyebrow `caption` roxo + `h2`), `WhatsAppFab` (botão flutuante; some enquanto estiver sobre um `form` ou elemento com `data-fab-avoid`, para não roubar o toque de campos e botões), `EmptyState` (pattern + mensagem), `Skeleton`.
 
 ---
 

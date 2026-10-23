@@ -93,7 +93,7 @@ export function PropertyCard({
               propertyCode={p.code ?? undefined}
               placement="property_card"
               aria-label={`Quero saber mais sobre ${p.title} (código ${p.code}) pelo WhatsApp`}
-              className={buttonClasses('whatsapp', 'sm', 'relative z-10')}
+              className={buttonClasses('whatsapp', 'sm', 'relative z-10 h-11')}
             >
               <WhatsAppIcon className="size-4" />
               Quero saber mais

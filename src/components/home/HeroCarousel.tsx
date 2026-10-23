@@ -95,7 +95,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
       {slides.length > 1 && (
         <div className="absolute inset-x-0 bottom-14 sm:bottom-16">
           <div className="container-site flex items-center gap-3">
-            <div className="flex items-center gap-2">
+            <div className="-ml-3 flex items-center">
               {slides.map((slide, i) => (
                 <button
                   key={slide.id}
@@ -103,7 +103,7 @@ export function HeroCarousel({ slides }: { slides: HeroSlide[] }) {
                   onClick={() => emblaApi?.scrollTo(i)}
                   aria-label={`Ir para o banner ${i + 1}`}
                   aria-current={i === selected}
-                  className="group flex h-11 items-center"
+                  className="group flex h-11 items-center px-3"
                 >
                   <span
                     className={cn(

@@ -38,6 +38,15 @@
   }
 }
 
+/* Com menu, filtros ou galeria abertos, a página de trás não rola junto com o dedo */
+html:has(dialog[open]:modal) {
+  overflow: hidden;
+}
+
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
 /* Na página do imóvel, a barra fixa de contato substitui o botão flutuante no celular */
 @media (width < 64rem) {
   body:has([data-sticky-cta]) .whatsapp-fab {

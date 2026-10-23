@@ -55,7 +55,7 @@ export function QuickSearch({ types, neighborhoods }: { types: PropertyType[]; n
           ))}
         </Select>
       </div>
-      <Button type="submit" size="lg" className="self-end sm:col-span-2 lg:col-span-1" icon={<Search className="size-5" />}>
+      <Button type="submit" size="lg" className="self-end sm:col-span-2 lg:col-span-1 lg:h-11" icon={<Search className="size-5" />}>
         Buscar
       </Button>
     </form>
