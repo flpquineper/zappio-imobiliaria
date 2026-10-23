@@ -20,14 +20,12 @@ export function Logo({
   tone = '04',
   width,
   className,
-  priority,
 }: {
   version?: Version
   tone?: Tone
   /** Largura em px. Mínimo de 100px para logotipos (manual, "Redução máxima"). */
   width: number
   className?: string
-  priority?: boolean
 }) {
   const safeWidth = version === 'symbol' ? width : Math.max(width, 100)
   const file = version === 'symbol' ? `symbol-${tone}` : `logo-${version}-${tone}`
@@ -37,7 +35,6 @@ export function Logo({
       alt="Zappio Assessoria Imobiliária"
       width={safeWidth}
       height={Math.round(safeWidth / ratios[version])}
-      priority={priority}
       unoptimized
       className={cn('h-auto select-none', className)}
       style={{ width: safeWidth }}

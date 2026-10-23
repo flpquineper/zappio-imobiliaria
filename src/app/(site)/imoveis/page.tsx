@@ -53,10 +53,10 @@ export default async function PropertiesPage({
 
         <div>
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-body text-neutral-700" aria-live="polite">
+            <h2 className="text-body font-normal text-neutral-700" aria-live="polite">
               <strong className="font-semibold text-brand-navy">{total}</strong>{' '}
               {total === 1 ? 'imóvel encontrado' : 'imóveis encontrados'}
-            </p>
+            </h2>
             <div className="flex items-center gap-2">
               <div className="lg:hidden">
                 <FilterDrawer activeCount={activeCount}>
@@ -71,7 +71,7 @@ export default async function PropertiesPage({
 
           {result.docs.length > 0 ? (
             <div className="flex flex-col gap-12">
-              <PropertyGrid properties={result.docs} settings={settings} featuredIds={featuredIds} />
+              <PropertyGrid properties={result.docs} settings={settings} featuredIds={featuredIds} preloadFirst />
               <Pagination filters={filters} page={result.page ?? 1} totalPages={result.totalPages} />
             </div>
           ) : (

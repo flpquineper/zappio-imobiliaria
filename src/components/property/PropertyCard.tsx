@@ -19,13 +19,13 @@ export function PropertyCard({
   property: p,
   settings,
   featured = false,
-  priority = false,
+  preload = false,
 }: {
   property: Property
   settings: Pick<Setting, 'whatsappNumber' | 'whatsappPropertyMessage'>
   /** Mostra o selo "Destaque" (imóvel escolhido nos destaques da página inicial). */
   featured?: boolean
-  priority?: boolean
+  preload?: boolean
 }) {
   const cover = getCover(p)
   const coverUrl = mediaUrl(cover, 'card')
@@ -47,7 +47,8 @@ export function PropertyCard({
             src={coverUrl}
             alt={cover?.alt ?? p.title}
             fill
-            priority={priority}
+            preload={preload}
+            fetchPriority={preload ? 'high' : undefined}
             sizes="(min-width: 1440px) 340px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className={cn(
               'object-cover transition-transform duration-500 ease-brand group-hover:scale-[1.03]',
