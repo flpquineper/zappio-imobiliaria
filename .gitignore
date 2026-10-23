@@ -56,3 +56,8 @@ node_modules/
 *.otf
 .env*
 !.env.example
+
+# relatórios de teste
+/playwright-report
+/test-results
+/perf/results
