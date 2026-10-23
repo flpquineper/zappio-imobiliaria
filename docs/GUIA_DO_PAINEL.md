@@ -1,8 +1,10 @@
 # Guia do painel da Zappio
 
+> Versão ilustrada, com prints das telas: [`Guia-do-Painel-Zappio.pdf`](Guia-do-Painel-Zappio.pdf).
+
 Este guia é para quem vai cuidar do site no dia a dia. Não precisa saber nada de tecnologia.
 
-**Endereço do painel:** `seusite.com.br/admin` (no protótipo: http://localhost:3000/admin)
+**Endereço do painel:** `zappioimobiliaria.com.br/admin` (no protótipo: http://localhost:3000/admin)
 
 ---
 
