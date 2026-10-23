@@ -28,10 +28,10 @@ export async function Footer() {
 
         <nav aria-label="Rodapé">
           <h2 className="mb-4 text-caption text-neutral-300 uppercase">Navegação</h2>
-          <ul className="flex flex-col gap-2.5">
+          <ul className="flex flex-col">
             {NAV_LINKS.map(({ href, label }) => (
               <li key={href}>
-                <Link href={href} className="text-body-sm text-white hover:text-neutral-100 hover:underline">
+                <Link href={href} className="inline-flex min-h-11 items-center text-body-sm text-white hover:text-neutral-100 hover:underline">
                   {label}
                 </Link>
               </li>
@@ -41,16 +41,16 @@ export async function Footer() {
 
         <div>
           <h2 className="mb-4 text-caption text-neutral-300 uppercase">Contato</h2>
-          <ul className="flex flex-col gap-3 text-body-sm">
+          <ul className="flex flex-col text-body-sm">
             <li>
-              <WhatsAppLink href={whatsappUrl} placement="footer" className="inline-flex items-center gap-2.5 hover:underline">
+              <WhatsAppLink href={whatsappUrl} placement="footer" className="inline-flex min-h-11 items-center gap-2.5 hover:underline">
                 <WhatsAppIcon className="size-4 shrink-0" />
                 {s.phone}
               </WhatsAppLink>
             </li>
             {s.phone && (
               <li>
-                <a href={`tel:+${s.whatsappNumber}`} className="inline-flex items-center gap-2.5 hover:underline">
+                <a href={`tel:+${s.whatsappNumber}`} className="inline-flex min-h-11 items-center gap-2.5 hover:underline">
                   <Phone className="size-4 shrink-0" />
                   Ligar agora
                 </a>
@@ -58,14 +58,14 @@ export async function Footer() {
             )}
             {s.email && (
               <li>
-                <a href={`mailto:${s.email}`} className="inline-flex items-center gap-2.5 break-all hover:underline">
+                <a href={`mailto:${s.email}`} className="inline-flex min-h-11 items-center gap-2.5 break-all hover:underline">
                   <Mail className="size-4 shrink-0" />
                   {s.email}
                 </a>
               </li>
             )}
             {address && (
-              <li className="flex items-start gap-2.5">
+              <li className="mt-2 flex items-start gap-2.5">
                 <MapPin className="mt-0.5 size-4 shrink-0" />
                 <span>
                   {address}
@@ -113,12 +113,12 @@ export async function Footer() {
         </div>
       </div>
 
-      <div className="relative border-t border-white/15">
-        <div className="container-site flex flex-col gap-2 py-6 text-body-sm text-neutral-300 md:flex-row md:items-center md:justify-between">
+      <div data-fab-avoid className="relative border-t border-white/15">
+        <div className="container-site flex flex-col py-4 text-body-sm text-neutral-300 md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} Zappio Assessoria Imobiliária{s.creci ? ` · CRECI ${s.creci}` : ''}
           </p>
-          <Link href="/politica-de-privacidade" className="hover:text-white hover:underline">
+          <Link href="/politica-de-privacidade" className="inline-flex min-h-11 items-center self-start hover:text-white hover:underline">
             Política de privacidade
           </Link>
         </div>

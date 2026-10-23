@@ -18,7 +18,7 @@ export async function Header() {
   return (
     <HeaderShell>
       <div className="container-site flex h-18 items-center justify-between gap-6">
-        <Link href="/" aria-label="Zappio — página inicial" className="shrink-0">
+        <Link href="/" aria-label="Zappio — página inicial" className="flex h-11 shrink-0 items-center">
           <Logo version="secondary" tone="04" width={128} priority />
         </Link>
 

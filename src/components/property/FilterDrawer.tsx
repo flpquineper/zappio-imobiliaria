@@ -30,6 +30,8 @@ export function FilterDrawer({ activeCount, children }: { activeCount: number; c
       <dialog
         ref={dialogRef}
         onClose={() => setOpen(false)}
+        // O conteúdo preenche a gaveta inteira: clique que chega no próprio <dialog> veio do fundo escurecido.
+        onClick={(e) => e.target === e.currentTarget && setOpen(false)}
         aria-label="Filtros"
         className="m-0 mt-auto max-h-[90dvh] w-full max-w-none rounded-t-xl bg-white p-0 backdrop:bg-brand-navy/50"
       >

@@ -7,7 +7,7 @@ Arquitetura de produção (opção A do plano):
 | Site, painel e API | **Vercel Pro** (região `gru1`, São Paulo) | Deploy automático a cada push na `main` |
 | Banco PostgreSQL | **Neon** (região AWS São Paulo, `sa-east-1`) | Plano Free atende o volume do site |
 | Fotos | **Cloudflare R2** | Bucket privado; o site entrega as fotos via `/api/media/file/...` |
-| Domínio | **registro.br** | DNS apontado para a Vercel |
+| Domínio | **registro.br** — `zappioimobiliaria.com.br` | DNS apontado para a Vercel |
 
 > A ordem abaixo importa: o banco é preparado (estrutura + conteúdo inicial) **antes** do primeiro deploy, para o site já nascer com conteúdo.
 
@@ -28,7 +28,7 @@ Arquitetura de produção (opção A do plano):
    - Escopo: somente o bucket `zappio-media`
    - Copie **Access Key ID** e **Secret Access Key** (o secret só aparece uma vez).
 3. Copie o **Account ID** (aparece na página inicial do R2).
-4. No bucket → **Settings → CORS policy** → cole (troque pelo domínio real quando tiver):
+4. No bucket → **Settings → CORS policy** → cole:
 
    ```json
    [
@@ -36,8 +36,8 @@ Arquitetura de produção (opção A do plano):
        "AllowedOrigins": [
          "http://localhost:3000",
          "https://zappio-imobiliaria.vercel.app",
-         "https://zappio.com.br",
-         "https://www.zappio.com.br"
+         "https://zappioimobiliaria.com.br",
+         "https://www.zappioimobiliaria.com.br"
        ],
        "AllowedMethods": ["GET", "PUT", "HEAD"],
        "AllowedHeaders": ["*"],
@@ -94,12 +94,12 @@ O seed envia as 28 fotos para o R2. Rode **uma vez só**: ele apaga o conteúdo 
 
 ## 5. Domínio (registro.br)
 
-1. Registre o domínio no [registro.br](https://registro.br) (ex.: `zappio.com.br`).
-2. Vercel → projeto → **Settings → Domains** → adicione `zappio.com.br` e `www.zappio.com.br` (defina um como principal; o outro redireciona).
+1. Domínio registrado no [registro.br](https://registro.br): **`zappioimobiliaria.com.br`**.
+2. Vercel → projeto → **Settings → Domains** → adicione `zappioimobiliaria.com.br` (principal) e `www.zappioimobiliaria.com.br` (redireciona para o principal).
 3. No registro.br, **altere os servidores DNS** para os que a Vercel indicar (`ns1.vercel-dns.com` / `ns2.vercel-dns.com`), ou crie os registros A/CNAME exatamente como a tela de Domains da Vercel mostrar.
 4. Aguarde a propagação (minutos a algumas horas). O HTTPS é emitido automaticamente.
 5. Depois que o domínio estiver ativo:
-   - Atualize `NEXT_PUBLIC_SITE_URL` para `https://zappio.com.br` e faça **Redeploy**.
+   - Atualize `NEXT_PUBLIC_SITE_URL` para `https://zappioimobiliaria.com.br` e faça **Redeploy**.
    - Confira se o domínio está no **CORS do R2**.
 
 ## 6. Entregar ao cliente

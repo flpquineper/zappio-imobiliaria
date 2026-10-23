@@ -126,7 +126,7 @@ As fases 1–2 dependem de aprovação do cliente; a fase 3 pode correr em paral
 | 2 | WhatsApp | **Número único: (53) 98130-0950** (`5553981300950`) |
 | 3 | CRM / portais | Não utilizam nenhum — sem integrações na fase 1 |
 | 4 | Endereço | **Pode exibir o endereço exato** do imóvel |
-| 5 | Domínio | **Não possuem** — registrar no registro.br (sugestão: `zappio.com.br` ou `zappioimoveis.com.br`, verificar disponibilidade). Até lá, usar o subdomínio da Vercel para homologação |
+| 5 | Domínio | Registrado no registro.br: **`zappioimobiliaria.com.br`** (DNS apontado para a Vercel; ver `docs/DEPLOY.md`) |
 | 6 | Fonte | Usar a fonte livre mais próxima: **Inter Tight** |
 | 7 | Contato | CRECI **27791** · Rua Andrade Neves, 2077 / Sala 401 · imobiliariazappio@gmail.com · Instagram **@zappio.imobiliaria** |
 | 8 | Conteúdo | Protótipo com textos, imóveis e números **fictícios** (`src/seed/data.ts`), a substituir pelo conteúdo real |

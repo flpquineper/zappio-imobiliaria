@@ -444,10 +444,8 @@ export const ABOUT_CONTENT = {
     { title: 'Valores', text: 'Transparência, cuidado com as pessoas, agilidade e responsabilidade em cada negociação.' },
   ],
   team: [
-    { name: 'Mariana Duarte', role: 'Fundadora e corretora' },
-    { name: 'Rafael Moreira', role: 'Corretor de imóveis' },
-    { name: 'Camila Fontoura', role: 'Atendimento e documentação' },
-    { name: 'Lucas Ferreira', role: 'Fotografia e marketing' },
+    { name: 'Leonardo Piedras', role: 'CEO' },
+    { name: 'Luis Quineper', role: 'Diretor de TI' },
   ],
   contactTitle: 'Fale com a gente',
   contactText: 'Tire dúvidas, agende uma visita ou conte o que você procura. Respondemos rápido.',
